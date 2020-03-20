@@ -1,2 +1,6 @@
+# $^ -> Primera dependencia
+# $< -> Todas las dependencias
+# $@ -> El nombre del Target
+
 sumas.x : sumas.cpp
-	g++ sumas.cpp -o sumas.x
+	g++ $^ -o $@
