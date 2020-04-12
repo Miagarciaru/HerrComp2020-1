@@ -12,7 +12,7 @@ int main(void)
   data = new double [N];
   fill_array(data, N, seed, 1.5, 0.5);
   std::cout<< "The mean is : " << get_mean(data, N) << std::endl; //Debe los argumentos ser data, N en vez de data, N+1
-  
+  delete [] data; //Se debe liberar memoria del arreglo
   return 0;
 }
 
@@ -31,7 +31,8 @@ double get_mean(double * array, int size)
   for (int ii = 0; ii < size; ii++) { //SegFault debido a que se llega al indice size cuando el conteo inicia desde cero hasta size-1
     sum += array[ii]; //Existia overflow porque sum no estaba inicializada y guardaba un valor basura que provocaba overflow
   }
-  delete [] array;
-  //array = new double [size] no libera la memoria lo cual si hace delete []array 
+  
+  array = new double [size];
+  delete [] array; //se debe liberar memoria tambien aquí.
   return sum/size;
 }
