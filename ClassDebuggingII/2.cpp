@@ -31,6 +31,7 @@ double get_mean(double * array, int size)
   for (int ii = 0; ii < size; ii++) { //SegFault debido a que se llega al indice size cuando el conteo inicia desde cero hasta size-1
     sum += array[ii]; //Existia overflow porque sum no estaba inicializada y guardaba un valor basura que provocaba overflow
   }
-  array = new double [size]; 
+  delete [] array;
+  //array = new double [size] no libera la memoria lo cual si hace delete []array 
   return sum/size;
 }
